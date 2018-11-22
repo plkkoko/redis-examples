@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lovely.ssm.redis.dao.DeptMapper">
+	<!-- 使用我们自己的cache实现类作为缓存 -->
+	<cache type="com.lovely.ssm.redis.util.RedisCache"/>
+
+	<resultMap id="BaseResultMap" type="com.lovely.ssm.redis.entitys.Dept">
+		<id column="deptId" property="deptid" jdbcType="INTEGER" />
+		<result column="deptName" property="deptname" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		deptId, deptName
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer" useCache="true"><!-- 开启缓存 -->
+		select
+		<include refid="Base_Column_List" />
+		from tb_dept
+		where deptId = #{deptid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from tb_dept
+		where deptId = #{deptid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.lovely.ssm.redis.entitys.Dept">
+		insert into tb_dept (deptId, deptName)
+		values (#{deptid,jdbcType=INTEGER}, #{deptname,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.lovely.ssm.redis.entitys.Dept">
+		insert into tb_dept
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="deptid != null">
+				deptId,
+			</if>
+			<if test="deptname != null">
+				deptName,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="deptid != null">
+				#{deptid,jdbcType=INTEGER},
+			</if>
+			<if test="deptname != null">
+				#{deptname,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.lovely.ssm.redis.entitys.Dept">
+		update tb_dept
+		<set>
+			<if test="deptname != null">
+				deptName = #{deptname,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where deptId = #{deptid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.lovely.ssm.redis.entitys.Dept">
+		update tb_dept
+		set deptName = #{deptname,jdbcType=VARCHAR}
+		where deptId = #{deptid,jdbcType=INTEGER}
+	</update>
+</mapper>

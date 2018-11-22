@@ -24,7 +24,7 @@ note：
 
 7).jedis操作redis
 
-8).redis整合spring
+[8).redis整合ssm做缓存](https://github.com/450255266/redis-examples/tree/master/code/redis-comment/redis-ssm)
 
 9).redis整合springboot
 

@@ -16,11 +16,11 @@ note：
 
 [3).redis事务概念](https://www.cnblogs.com/SimpleWu/p/9997509.html)
 
-4).redis消息发布与订阅
+[4).redis消息发布与订阅](https://www.cnblogs.com/SimpleWu/p/9999570.html)
 
-5).redis主从复制
+[5).redis主从复制](https://www.cnblogs.com/SimpleWu/p/9999582.html)
 
-6).redis哨兵模式
+[6).redis哨兵模式](https://www.cnblogs.com/SimpleWu/p/9999590.html)
 
 7).jedis操作redis
 
